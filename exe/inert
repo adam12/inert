@@ -2,9 +2,9 @@
 require "inert"
 
 case ARGV[0]
-when "scrape"
+when "build"
   ENV["RACK_ENV"] = "production"
-  Inert.scrape
+  Inert.build
 else
   ENV["RACK_ENV"] = "development"
   Inert.start

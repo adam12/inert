@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require_relative "inert/page"
-require_relative "inert/scraper"
+require_relative "inert/builder"
 require_relative "inert/middleware"
 
 module Inert
@@ -16,7 +16,7 @@ module Inert
     Rack::Server.start(app: app)
   end
 
-  def scrape
-    Inert::Scraper.new(Inert::Middleware).call("/")
+  def build
+    Inert::Builder.new(Inert::Middleware).call("/")
   end
 end

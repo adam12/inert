@@ -4,7 +4,7 @@ require "set"
 require "oga"
 
 module Inert
-  class Scraper
+  class Builder
     attr_accessor :app, :build_path
     attr_reader :queue, :history
 
@@ -45,6 +45,9 @@ module Inert
       html = Oga.parse_html(response.body)
       html.css("[href], [src]").each do |el|
         url = (el.get("href") || el.get("src"))
+
+        next if url =~ /\Ahttps?/
+
         queue.push(url)
       end
     end
