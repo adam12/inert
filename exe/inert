@@ -6,5 +6,6 @@ when "scrape"
   ENV["RACK_ENV"] = "production"
   Inert.scrape
 else
+  ENV["RACK_ENV"] = "development"
   Inert.start
 end
