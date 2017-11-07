@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+require "inert"
+
+case ARGV[0]
+when "scrape"
+  ENV["RACK_ENV"] = "production"
+  Inert.scrape
+else
+  Inert.start
+end

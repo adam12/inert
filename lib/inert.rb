@@ -20,11 +20,3 @@ module Inert
     Inert::Scraper.new(Inert::Middleware).call("/")
   end
 end
-
-case ARGV[0]
-when "scrape"
-  ENV["RACK_ENV"] = "production"
-  Inert.scrape
-else
-  Inert.start
-end
