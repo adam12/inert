@@ -14,8 +14,12 @@ module Inert
       view_file = r.remaining_path.dup
       view_file << "index.html" if view_file.end_with?("/")
 
-      # TODO: Check file existance or rescue exception?
-      page = Page.load_from_file("./views#{view_file}.erb")
+      begin
+        page = Page.load_from_file("./views#{view_file}.erb")
+      rescue Errno::ENOENT
+        r.halt([404, {}, ["Not found"]])
+      end
+
       @page = page.frontmatter
 
       view(inline: page.body, layout: page.layout)
