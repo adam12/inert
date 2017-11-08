@@ -19,7 +19,7 @@ module Inert
       save(starting_url)
 
       while (url = queue.pop)
-        next if history.include?(url)
+        next if history.include?(url) || url == "#"
 
         save(url) && history.add(url)
       end
