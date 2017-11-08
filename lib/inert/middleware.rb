@@ -25,6 +25,10 @@ module Inert
 
       view(inline: page.body, layout: page.layout)
     end
+
+    def inline(file)
+      File.read("./views/#{file}")
+    end
   end
 end
 
