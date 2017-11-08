@@ -51,6 +51,12 @@ module Inert
 
         queue.push(url)
       end
+
+      html.css("[style*='url']").each do |el|
+        el.get("style").match(/url\(['"]?([^'"]+)['"]?\)/) do |m|
+          queue.push(m[1])
+        end
+      end
     end
   end
 end
