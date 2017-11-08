@@ -4,6 +4,7 @@ require "roda"
 module Inert
   class Middleware < Roda
     plugin :render, cache: ENV["RACK_ENV"] == "production"
+    plugin :partials
     plugin :public, root: "static"
 
     attr_reader :page
