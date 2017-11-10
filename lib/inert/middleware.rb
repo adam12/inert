@@ -6,6 +6,7 @@ module Inert
     plugin :render, cache: ENV["RACK_ENV"] == "production"
     plugin :partials
     plugin :public, root: "static"
+    plugin :content_for
 
     attr_reader :page
 
