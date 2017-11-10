@@ -17,7 +17,7 @@ module Inert
       view_file << "index.html" if view_file.end_with?("/")
 
       begin
-        page = Page.load_from_file("./views#{view_file}")
+        page = Page.load_from_file(File.join("./views", view_file))
       rescue Errno::ENOENT
         r.halt([404, {}, ["Not found"]])
       end
@@ -28,7 +28,7 @@ module Inert
     end
 
     def inline(file)
-      File.read("./views/#{file}")
+      File.read(File.join("./views", file))
     end
   end
 end
