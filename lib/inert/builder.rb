@@ -2,6 +2,7 @@
 require "fileutils"
 require "set"
 require "oga"
+require "uri"
 
 module Inert
   class Builder
@@ -30,7 +31,7 @@ module Inert
       warn "Saving #{url}"
       request = Rack::MockRequest.new(app)
 
-      dest = url.dup
+      dest = URI(url.dup).path
       dest << "index.html"  if dest.end_with?("/")
       dest << ".html"       unless dest =~ /\.\w+$/
       dest = File.expand_path(dest[1..-1], build_path)
