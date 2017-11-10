@@ -17,14 +17,14 @@ module Inert
       view_file << "index.html" if view_file.end_with?("/")
 
       begin
-        page = Page.load_from_file("./views#{view_file}.erb")
+        page = Page.load_from_file("./views#{view_file}")
       rescue Errno::ENOENT
         r.halt([404, {}, ["Not found"]])
       end
 
       @page = page.frontmatter
 
-      view(inline: page.body, layout: page.layout)
+      view(inline: page.body, layout: page.layout, template_class: Tilt[page.filename])
     end
 
     def inline(file)
