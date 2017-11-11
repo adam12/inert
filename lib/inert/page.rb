@@ -9,7 +9,7 @@ module Inert
     def initialize(body: "", frontmatter: {}, filename: nil)
       @body = body
       @frontmatter = frontmatter
-      @layout = @frontmatter.delete(:layout) || "layout"
+      @layout = @frontmatter.delete("layout") || "layout"
       @filename = filename
 
       @frontmatter = OpenStruct.new(@frontmatter)
