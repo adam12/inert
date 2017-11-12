@@ -1,4 +1,5 @@
 ## master
+- Add hooks to extend underlying Roda app
 - Fix custom layout property
 - Proper file join
 - Support other rendering engines outside of ERB
