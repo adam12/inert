@@ -17,6 +17,10 @@ module Inert
   def build
     Inert::Builder.new(Inert::Middleware).call("/")
   end
+
+  def view_path
+    File.expand_path(Inert.config.views, Dir.pwd)
+  end
 end
 
 require_relative "inert/page"

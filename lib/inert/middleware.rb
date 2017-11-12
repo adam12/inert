@@ -3,7 +3,10 @@ require "roda"
 
 module Inert
   class Middleware < Roda
-    plugin :render, cache: ENV["RACK_ENV"] == "production"
+    plugin :render,
+      cache: ENV["RACK_ENV"] == "production",
+      views: Inert.config.views
+
     plugin :partials
     plugin :public, root: "static"
     plugin :content_for
@@ -21,7 +24,7 @@ module Inert
       view_file << "index.html" if view_file.end_with?("/")
 
       begin
-        page = Page.load_from_file(File.join("./views", view_file))
+        page = Page.load_from_file(File.join(Inert.view_path, view_file))
       rescue Errno::ENOENT
         r.halt([404, {}, ["Not found"]])
       end
@@ -34,7 +37,7 @@ module Inert
     class_exec &Inert.config.helpers
 
     def inline(file)
-      File.read(File.join("./views", file))
+      File.read(File.join(Inert.view_path, file))
     end
   end
 end

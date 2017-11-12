@@ -25,10 +25,14 @@ module Inert
   #     end
   #   end
   class Config
+    # Folder containing your pages or view files.
+    attr_accessor :views
+
     def initialize
       @app = proc{}
       @helpers = proc{}
       @routes = proc{}
+      @views = "views"
     end
 
     # Helpers to make available in your views.
