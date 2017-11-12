@@ -8,6 +8,58 @@ An experimental static site builder with unambitious goals.
 - Allow reading of YAML frontmatter
 - Allow queueing of manual URLs for preservation
 
+
+## Usage
+
+Install the gem:
+
+    gem install inert
+
+Create a few folders:
+
+    mkdir static views
+
+And a layout file:
+
+    echo "<%= yield %>" > views/layout.erb
+
+And then start the Inert server:
+
+    inert
+
+When you're ready to deploy, build the site:
+
+    inert build
+
+## Configuring
+
+By default, Inert expects a few things, and should work without configuration.
+Because it's built on top of Roda, it's very easily extendable, and Inert
+provides hooks to do this via the `Inertfile` it will read from your project
+root at runtime.
+
+```ruby
+# Inertfile
+Inert.config do |inert|
+   inert.helpers do
+     def generator
+       "Inert v#{Inert::VERSION}"
+     end
+   end
+  
+  inert.app do
+    plugin :h
+  end
+  
+  inert.routes do |r|
+    r.on "employees.html" do
+      @employees = [] # Read in actual data here
+      view("employees.html.erb")
+    end
+  end
+end
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/adam12/inert.

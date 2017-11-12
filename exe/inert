@@ -1,4 +1,11 @@
 #!/usr/bin/env ruby
+require "inert/config"
+
+inertfile = File.join(Dir.pwd, "Inertfile")
+if File.exist?(inertfile)
+  load inertfile
+end
+
 require "inert"
 
 case ARGV[0]

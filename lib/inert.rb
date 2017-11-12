@@ -1,7 +1,5 @@
 # frozen_string_literal: true
-require_relative "inert/page"
-require_relative "inert/builder"
-require_relative "inert/middleware"
+require_relative "inert/config"
 
 module Inert
   module_function
@@ -20,3 +18,7 @@ module Inert
     Inert::Builder.new(Inert::Middleware).call("/")
   end
 end
+
+require_relative "inert/page"
+require_relative "inert/builder"
+require_relative "inert/middleware"
