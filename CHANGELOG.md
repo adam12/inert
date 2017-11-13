@@ -1,4 +1,5 @@
 ## master
+- Move require of inert until `RACK_ENV` is set.
 - Allow views path to be configurable
 - Add hooks to extend underlying Roda app
 - Fix custom layout property
