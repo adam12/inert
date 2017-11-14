@@ -60,6 +60,29 @@ Inert.config do |inert|
 end
 ```
 
+## Live Reloads
+
+Use the `roda-live_reload` gem to enable live reloads:
+
+
+```ruby
+# Gemfile
+gem "roda-live_reload"
+gem "puma" # Webrick wont' currently work with roda-live_reload
+
+
+# Inertfile
+Inert.config do |inert|
+  inert.app do
+    plugin :live_reload if ENV["RACK_ENV"] == "development"
+  end
+
+  inert.routes do |r|
+    r.live_reload if ENV["RACK_ENV"] == "development"
+  end
+end
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/adam12/inert.
