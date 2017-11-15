@@ -60,6 +60,30 @@ Inert.config do |inert|
 end
 ```
 
+## Asset Fingerprinting
+
+Use asset fingerprinting to enable max-cache times on all your static assets.
+
+```ruby
+# Inertfile
+Inert.config do |inert|
+  inert.app do
+    plugin :timestamp_public
+  end
+
+  inert.routes do |r|
+    r.timestamp_public
+  end
+end
+```
+
+And inside your views, use the `timestamp_path` helper with the name of the file
+in `static/` wherever you'd just use the filename itself:
+
+```ruby
+<img src="<%= timestamp_path "some_image_in_static_folder.png" %>">
+```
+
 ## Live Reloads
 
 Use the `roda-live_reload` gem to enable live reloads:
