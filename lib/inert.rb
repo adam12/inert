@@ -5,10 +5,13 @@ module Inert
   module_function
 
   def start
-    app = Inert::Middleware
+    app = Rack::Builder.app do
+      if ENV["RACK_ENV"] != "production"
+        use Rack::ShowExceptions
+        use Rack::CommonLogger
+      end
 
-    if ENV["RACK_ENV"] != "production"
-      app = Rack::ShowExceptions.new(app)
+      run Inert::Middleware
     end
 
     Rack::Server.start(app: app)
