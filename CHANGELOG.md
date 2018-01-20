@@ -1,5 +1,6 @@
 ## master
 - Actually expose Inert::VERSION
+- Add `Inert.development?` and `Inert.building?` predicate methods
 
 ## 0.2.0 (2017-11-16)
 - Use Rack builder and add CommonLogger middleware

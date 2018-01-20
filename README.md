@@ -98,11 +98,11 @@ gem "puma" # Webrick wont' currently work with roda-live_reload
 # Inertfile
 Inert.config do |inert|
   inert.app do
-    plugin :live_reload if ENV["RACK_ENV"] == "development"
+    plugin :live_reload if Inert.development?
   end
 
   inert.routes do |r|
-    r.live_reload if ENV["RACK_ENV"] == "development"
+    r.live_reload if Inert.development?
   end
 end
 ```

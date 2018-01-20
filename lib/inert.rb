@@ -7,7 +7,7 @@ module Inert
 
   def start
     app = Rack::Builder.app do
-      if ENV["RACK_ENV"] != "production"
+      if Inert.development?
         use Rack::ShowExceptions
         use Rack::CommonLogger
       end
@@ -24,6 +24,14 @@ module Inert
 
   def view_path
     File.expand_path(Inert.config.views, Dir.pwd)
+  end
+
+  def development?
+    ENV["RACK_ENV"] == "development"
+  end
+
+  def building?
+    !development?
   end
 end
 
