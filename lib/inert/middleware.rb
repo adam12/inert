@@ -19,7 +19,7 @@ module Inert
       instance_exec(r, &Inert.config.routes)
 
       view_file = r.remaining_path.dup
-      view_file << "index.html" if view_file.end_with?("/")
+      view_file << "index" if view_file.end_with?("/")
 
       begin
         page = Page.load_from_file(File.join(Inert.view_path, view_file))
