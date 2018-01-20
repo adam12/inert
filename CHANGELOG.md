@@ -1,4 +1,8 @@
 ## master
+- More verbose url skipping
+- Add starting url to history
+- Fix scope of routes being called
+- Empty page object before initializing
 - Actually expose Inert::VERSION
 - Add `Inert.development?` and `Inert.building?` predicate methods
 
