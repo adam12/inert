@@ -13,8 +13,6 @@ module Inert
 
     class_exec &Inert.config.app
 
-    attr_reader :page
-
     route do |r|
       r.public
 
@@ -38,6 +36,10 @@ module Inert
 
     def inline(file)
       File.read(File.join(Inert.view_path, file))
+    end
+
+    def page
+      @page ||= OpenStruct.new
     end
   end
 end
