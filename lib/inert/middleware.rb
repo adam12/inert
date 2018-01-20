@@ -24,7 +24,7 @@ module Inert
       begin
         page = Page.load_from_file(File.join(Inert.view_path, view_file))
       rescue Errno::ENOENT
-        r.halt([404, {}, ["Not found"]])
+        r.halt([404, {}, ["#{view_file} Not found"]])
       end
 
       @page = page.frontmatter
