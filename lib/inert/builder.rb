@@ -21,7 +21,7 @@ module Inert
       history.add(starting_url)
 
       while (url = queue.pop)
-        next if history.include?(url) || url == "#"
+        next if already_visited?(url) || is_anchor?(url) || is_remote?(url)
 
         save(url)
         history.add(url)
@@ -59,6 +59,18 @@ module Inert
           queue.push(m[1])
         end
       end
+    end
+
+    def already_visited?(url)
+      history.include?(url)
+    end
+
+    def is_anchor?(url)
+      url.start_with?("#")
+    end
+
+    def is_remote?(url)
+      url =~ /\A(\w+):/ || url.start_with?("//")
     end
   end
 end
