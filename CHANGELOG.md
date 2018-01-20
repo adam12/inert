@@ -1,4 +1,6 @@
 ## master
+- Remove html extension from default filename
+- Show missing view filename in 404 error
 - More verbose url skipping
 - Add starting url to history
 - Fix scope of routes being called
