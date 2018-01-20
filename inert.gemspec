@@ -1,6 +1,9 @@
+$LOAD_PATH.unshift(File.expand_path("./lib", __dir__))
+require "inert/version"
+
 Gem::Specification.new do |spec|
   spec.name = "inert"
-  spec.version = "0.2.0"
+  spec.version = Inert::VERSION
   spec.authors = ["Adam Daniels"]
   spec.email = "adam@mediadrive.ca"
 
