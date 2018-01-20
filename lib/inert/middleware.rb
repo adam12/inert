@@ -16,7 +16,7 @@ module Inert
     route do |r|
       r.public
 
-      Inert.config.routes.call(r)
+      instance_exec(r, &Inert.config.routes)
 
       view_file = r.remaining_path.dup
       view_file << "index.html" if view_file.end_with?("/")
