@@ -1,4 +1,5 @@
 ## master
+- Copy static assets before building site
 - Remove html extension from default filename
 - Show missing view filename in 404 error
 - More verbose url skipping

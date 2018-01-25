@@ -17,6 +17,8 @@ module Inert
     end
 
     def call(starting_url)
+      copy_static
+
       save(starting_url)
       history.add(starting_url)
 
@@ -59,6 +61,10 @@ module Inert
           queue.push(m[1])
         end
       end
+    end
+
+    def copy_static
+      FileUtils.cp_r(app.opts[:public_root]+"/.", build_path)
     end
 
     def already_visited?(url)
