@@ -46,11 +46,11 @@ Inert.config do |inert|
        "Inert v#{Inert::VERSION}"
      end
    end
-  
+
   inert.app do
     plugin :h
   end
-  
+
   inert.routes do |r|
     r.on "employees.html" do
       @employees = [] # Read in actual data here
@@ -83,6 +83,36 @@ in `static/` wherever you'd just use the filename itself:
 ```ruby
 <img src="<%= timestamp_path "some_image_in_static_folder.png" %>">
 ```
+
+## Asset Minification
+
+Use asset minification to compile and compress all your CSS and JS assets into
+a single file.
+
+```ruby
+# Inertfile
+
+Inert.config do |inert|
+  inert.app do
+    plugin :assets, css: %w"text.css layout.css"
+    compile_assets if Inert.building?
+  end
+
+  inert.routes do |r|
+    r.assets
+  end
+end
+```
+
+And inside your layout, use the `assets` helper with the name of the asset group:
+
+```ruby
+<%= assets(:css) %>
+```
+
+Make sure you put your assets in `assets/group`. For the example above, you'd have
+`assets/css/text.css` and `assets/css/layout.css`.
+
 
 ## Live Reloads
 
