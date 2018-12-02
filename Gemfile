@@ -5,5 +5,8 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gemspec
 
+gem "fakefs"
+gem "minitest"
 gem "pry"
+gem "rake"
 gem "rubygems-tasks"
