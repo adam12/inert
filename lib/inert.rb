@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 require_relative "inert/version"
 require_relative "inert/config"
+require_relative "inert/cli"
 
 module Inert
   module_function
 
-  def start
+  def start(server: nil, host: nil, port: nil)
     app = Rack::Builder.app do
       if Inert.development?
         use Rack::ShowExceptions
@@ -15,7 +16,12 @@ module Inert
       run Inert::Middleware
     end
 
-    Rack::Server.start(app: app)
+    Rack::Server.start({
+      app: app,
+      server: server,
+      "Host": host,
+      "Port": port
+    })
   end
 
   def build
