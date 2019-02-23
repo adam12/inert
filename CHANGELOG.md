@@ -1,4 +1,6 @@
 ## master
+
+## 0.3.0 (2019-02-22)
 - Copy static assets before building site
 - Remove html extension from default filename
 - Show missing view filename in 404 error
