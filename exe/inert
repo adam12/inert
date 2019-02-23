@@ -6,13 +6,5 @@ if File.exist?(inertfile)
   load inertfile
 end
 
-case ARGV[0]
-when "build"
-  ENV["RACK_ENV"] = "production"
-  require "inert"
-  Inert.build
-else
-  ENV["RACK_ENV"] = "development"
-  require "inert"
-  Inert.start
-end
+require "inert"
+Inert::CLI.start
