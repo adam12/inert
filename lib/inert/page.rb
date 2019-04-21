@@ -21,6 +21,15 @@ module Inert
       raise Errno::ENOENT if filename.nil?
 
       body = File.read(filename)
+      body, frontmatter = extract_frontmatter(body)
+      new(body: body, frontmatter: frontmatter, filename: filename)
+    end
+
+    def self.find_file(filename)
+      Dir[filename + ".*"].first
+    end
+
+    def self.extract_frontmatter(body)
       frontmatter = {}
 
       body = body.gsub(/---(.*)---/m) do |m|
@@ -28,11 +37,7 @@ module Inert
         ""
       end.lstrip
 
-      new(body: body, frontmatter: frontmatter, filename: filename)
-    end
-
-    def self.find_file(filename)
-      Dir[filename + ".*"].first
+      [body, frontmatter]
     end
   end
 end
