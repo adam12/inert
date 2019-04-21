@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 require "fileutils"
-require "set"
 require "oga"
 require "uri"
+require_relative "history"
 
 module Inert
   class Builder
@@ -12,7 +12,7 @@ module Inert
     def initialize(app)
       @app = app
       @queue = []
-      @history = Set.new
+      @history = History.new
       @build_path = "./build"
     end
 
@@ -23,7 +23,7 @@ module Inert
       history.add(starting_url)
 
       while (url = queue.pop)
-        next if already_visited?(url) || is_anchor?(url) || is_remote?(url)
+        next if history.include?(url) || is_anchor?(url) || is_remote?(url)
 
         save(url)
         history.add(url)
@@ -65,10 +65,6 @@ module Inert
 
     def copy_static
       FileUtils.cp_r(app.opts[:public_root]+"/.", build_path)
-    end
-
-    def already_visited?(url)
-      history.include?(url)
     end
 
     def is_anchor?(url)
