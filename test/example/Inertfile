@@ -1,0 +1,8 @@
+# vim: set ft=ruby :
+Inert.config do |inert|
+  inert.routes do |r|
+    r.get "bang" do
+      fail "OH NOES"
+    end
+  end
+end
