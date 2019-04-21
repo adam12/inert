@@ -12,6 +12,7 @@ module Inert
     plugin :content_for
 
     if Inert.development?
+      plugin :common_logger
       plugin :exception_page
       plugin :error_handler do |e|
         next exception_page(e)

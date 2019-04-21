@@ -9,19 +9,12 @@ module Inert
   def start(server: nil, host: nil, port: nil)
     require_relative "inert/app"
 
-    app = Rack::Builder.app do
-      if Inert.development?
-        use Rack::CommonLogger
-      end
-
-      run Inert::App
-    end
-
     Rack::Server.start({
-      app: app,
+      app: Inert::App,
       server: server,
-      "Host": host,
-      "Port": port
+      Host: host,
+      Port: port,
+      AccessLog: []
     })
   end
 
