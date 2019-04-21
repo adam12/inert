@@ -7,13 +7,15 @@ module Inert
   module_function
 
   def start(server: nil, host: nil, port: nil)
+    require_relative "inert/app"
+
     app = Rack::Builder.app do
       if Inert.development?
         use Rack::ShowExceptions
         use Rack::CommonLogger
       end
 
-      run Inert::Middleware
+      run Inert::App
     end
 
     Rack::Server.start({
@@ -25,7 +27,9 @@ module Inert
   end
 
   def build
-    Inert::Builder.new(Inert::Middleware).call("/")
+    require_relative "inert/app"
+
+    Inert::Builder.new(Inert::App).call("/")
   end
 
   def view_path
@@ -43,4 +47,3 @@ end
 
 require_relative "inert/page"
 require_relative "inert/builder"
-require_relative "inert/middleware"

@@ -2,7 +2,7 @@
 require "roda"
 
 module Inert
-  class Middleware < Roda
+  class App < Roda
     plugin :render,
       cache: Inert.building?,
       views: Inert.config.views
