@@ -2,9 +2,7 @@
 require "inert/config"
 
 inertfile = File.join(Dir.pwd, "Inertfile")
-if File.exist?(inertfile)
-  load inertfile
-end
+Inert::Config.load(inertfile)
 
 require "inert"
 Inert::CLI.start

@@ -56,10 +56,15 @@ module Inert
       return @routes unless block_given?
       @routes = block
     end
+
+    def self.load(filename)
+      if File.exist?(filename)
+        Kernel.load filename
+      end
+    end
   end
 
-  module_function
-  def config
+  def self.config
     @config ||= Config.new
     yield @config if block_given?
     @config
