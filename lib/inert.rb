@@ -11,7 +11,6 @@ module Inert
 
     app = Rack::Builder.app do
       if Inert.development?
-        use Rack::ShowExceptions
         use Rack::CommonLogger
       end
 
