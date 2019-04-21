@@ -11,6 +11,13 @@ module Inert
     plugin :public, root: "static"
     plugin :content_for
 
+    if Inert.development?
+      plugin :exception_page
+      plugin :error_handler do |e|
+        next exception_page(e)
+      end
+    end
+
     class_exec &Inert.config.app
 
     route do |r|

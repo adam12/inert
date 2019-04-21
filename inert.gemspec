@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   spec.executables << "inert"
 
-  spec.add_dependency "roda", ">= 2.0", "< 4.0"
+  spec.add_dependency "roda", ">= 3.13", "< 4.0"
   spec.add_dependency "tilt", ">= 2.0", "< 4.0"
   spec.add_dependency "thor", "< 1.0"
   spec.add_dependency "oga", ">= 2.0", "< 4.0"
