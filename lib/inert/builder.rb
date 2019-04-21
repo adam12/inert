@@ -6,14 +6,14 @@ require_relative "history"
 
 module Inert
   class Builder
-    attr_accessor :app, :build_path
+    attr_accessor :app, :build_destination
     attr_reader :queue, :history
 
-    def initialize(app)
+    def initialize(app, build_destination: "./build")
       @app = app
       @queue = []
       @history = History.new
-      @build_path = "./build"
+      @build_destination = build_destination
     end
 
     def call(starting_url)
@@ -37,7 +37,7 @@ module Inert
       dest = URI(url.dup).path
       dest << "index.html"  if dest.end_with?("/")
       dest << ".html"       unless dest =~ /\.\w+$/
-      dest = File.expand_path(dest[1..-1], build_path)
+      dest = File.expand_path(dest[1..-1], build_destination)
 
       FileUtils.mkdir_p(File.dirname(dest))
 
@@ -64,7 +64,7 @@ module Inert
     end
 
     def copy_static
-      FileUtils.cp_r(app.opts[:public_root]+"/.", build_path)
+      FileUtils.cp_r(app.opts[:public_root]+"/.", build_destination)
     end
 
     def is_anchor?(url)
