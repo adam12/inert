@@ -12,7 +12,7 @@ jobs:
       - run: bundle install --path vendor/bundle
       - run:
           name: Run tests
-          command: rake test
+          command: bundle exec rake test
 
   "ruby-2.5":
     docker:
@@ -23,7 +23,7 @@ jobs:
       - run: bundle install --path vendor/bundle
       - run:
           name: Run tests
-          command: rake test
+          command: bundle exec rake test
 
   "ruby-2.6":
     docker:
@@ -33,7 +33,7 @@ jobs:
       - run: bundle install --path vendor/bundle
       - run:
           name: Run tests
-          command: rake test
+          command: bundle exec rake test
 
 workflows:
   version: 2
