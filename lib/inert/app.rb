@@ -19,7 +19,7 @@ module Inert
       end
     end
 
-    class_exec &Inert.config.app
+    class_exec(&Inert.config.app)
 
     route do |r|
       r.public
@@ -40,7 +40,7 @@ module Inert
       view(inline: page.body, layout: page.layout, template_class: Tilt[page.filename])
     end
 
-    class_exec &Inert.config.helpers
+    class_exec(&Inert.config.helpers)
 
     def inline(file)
       File.read(File.join(Inert.view_path, file))
