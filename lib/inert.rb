@@ -7,6 +7,7 @@ module Inert
   module_function
 
   def start(server: nil, host: nil, port: nil)
+    ENV["RACK_ENV"] = "development"
     require_relative "inert/app"
 
     Rack::Server.start({
@@ -19,6 +20,7 @@ module Inert
   end
 
   def build
+    ENV["RACK_ENV"] = "production"
     require_relative "inert/app"
 
     Inert::Builder.new(Inert::App).call("/")
