@@ -31,7 +31,7 @@ module Inert
     end
 
     def save(url)
-      warn "Saving #{url}"
+      puts "Saving #{url}"
       request = Rack::MockRequest.new(app)
 
       dest = URI(url.dup).path
