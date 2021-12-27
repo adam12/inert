@@ -11,7 +11,7 @@ class TestCli < Minitest::Test
     lib = File.expand_path("../lib", __dir__)
 
     Dir.chdir(File.expand_path("example", __dir__)) do
-      output, status = Open3.capture2e("ruby -I#{lib} #{exe} build")
+      output, status = Open3.capture2e("ruby -W0 -I#{lib} #{exe} build")
       assert_equal "Saving /", output.strip
       assert_equal 0, status.exitstatus
     end
