@@ -4,17 +4,22 @@ require "oga"
 require "uri"
 require "rack"
 require_relative "history"
+require_relative "logger"
 
 module Inert
   class Builder
     attr_accessor :app, :build_destination
     attr_reader :queue, :history
 
+    attr_accessor :logger
+
     def initialize(app, build_destination: "./build")
       @app = app
       @queue = []
       @history = History.new
       @build_destination = build_destination
+
+      Logger.configure(self)
     end
 
     def call(starting_url)
@@ -32,7 +37,7 @@ module Inert
     end
 
     def save(url)
-      puts "Saving #{url}"
+      logger.info { "Saving #{url}" }
       request = Rack::MockRequest.new(app)
 
       dest = URI(url.dup).path
