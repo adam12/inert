@@ -2,6 +2,7 @@
 require "fileutils"
 require "oga"
 require "uri"
+require "rack"
 require_relative "history"
 
 module Inert
