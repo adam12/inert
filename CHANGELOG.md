@@ -2,6 +2,7 @@
 - Update Thor dependency to be 1.x
 - Add Rackup dependency and fix Rack changes 2.x to 3.x
 - Force Rack 3.x dependency
+- Add webrick dependency for newer Rubies
 
 ## 0.3.0 (2019-02-22)
 - Copy static assets before building site
