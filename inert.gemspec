@@ -18,6 +18,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rack", "< 4.0"
   spec.add_dependency "roda", ">= 3.13", "< 4.0"
   spec.add_dependency "tilt", ">= 2.0", "< 4.0"
-  spec.add_dependency "thor", "< 1.0"
+  spec.add_dependency "thor", ">= 1.0", "< 3.0"
   spec.add_dependency "oga", ">= 2.0", "< 4.0"
 end

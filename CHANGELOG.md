@@ -1,4 +1,5 @@
 ## master
+- Update Thor dependency to be 1.x
 
 ## 0.3.0 (2019-02-22)
 - Copy static assets before building site
