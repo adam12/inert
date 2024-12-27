@@ -10,7 +10,9 @@ module Inert
     ENV["RACK_ENV"] = "development"
     require_relative "inert/app"
 
-    Rack::Server.start({
+    require "rackup/server"
+
+    Rackup::Server.start({
       app: Inert::App,
       server: server,
       Host: host,
