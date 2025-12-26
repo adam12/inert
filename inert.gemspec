@@ -15,6 +15,8 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   spec.executables << "inert"
 
+  spec.add_dependency "ostruct", ">= 0.5"
+  spec.add_dependency "logger", ">= 1.5"
   spec.add_dependency "rack", ">= 3.0", "< 4.0"
   spec.add_dependency "rackup", "< 3.0"
   spec.add_dependency "roda", ">= 3.13", "< 4.0"
