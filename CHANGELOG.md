@@ -1,4 +1,7 @@
 ## master
+
+## 0.4.0 (2025-12-28)
+- Add dependencies for Ruby 4.0 support
 - Update Thor dependency to be 1.x
 - Add Rackup dependency and fix Rack changes 2.x to 3.x
 - Force Rack 3.x dependency
